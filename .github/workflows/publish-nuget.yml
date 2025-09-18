@@ -8,7 +8,7 @@ on:
       version:
         description: 'Package version to publish'
         required: true
-        default: '1.0.0'
+        default: '1.0.0-preview.1'
 
 env:
   DOTNET_VERSION: '9.0.x'
@@ -51,38 +51,54 @@ jobs:
 
     - name: Pack Abstraction package
       run: |
-        cd src/MasLazu.AspNet.Verification.Abstraction
+        cd src/MasLazu.AspNet.Authentication.Core.Abstraction
         dotnet pack --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ github.workspace }}/nupkgs /p:PackageVersion=${{ steps.get-version.outputs.version }}
 
-    - name: Pack Application package
+    - name: Pack Domain package
       run: |
-        cd src/MasLazu.AspNet.Verification
+        cd src/MasLazu.AspNet.Authentication.Core.Domain
+        dotnet pack --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ github.workspace }}/nupkgs /p:PackageVersion=${{ steps.get-version.outputs.version }}
+
+    - name: Pack Base package
+      run: |
+        cd src/MasLazu.AspNet.Authentication.Core.Base
         dotnet pack --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ github.workspace }}/nupkgs /p:PackageVersion=${{ steps.get-version.outputs.version }}
 
     - name: Pack EfCore package
       run: |
-        cd src/MasLazu.AspNet.Verification.EfCore
+        cd src/MasLazu.AspNet.Authentication.Core.EfCore
         dotnet pack --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ github.workspace }}/nupkgs /p:PackageVersion=${{ steps.get-version.outputs.version }}
 
     - name: Pack Endpoint package
       run: |
-        cd src/MasLazu.AspNet.Verification.Endpoint
+        cd src/MasLazu.AspNet.Authentication.Core.Endpoint
+        dotnet pack --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ github.workspace }}/nupkgs /p:PackageVersion=${{ steps.get-version.outputs.version }}
+
+    - name: Pack Consumer package
+      run: |
+        cd src/MasLazu.AspNet.Authentication.Core.Consumer
         dotnet pack --configuration ${{ env.CONFIGURATION }} --no-build --output ${{ github.workspace }}/nupkgs /p:PackageVersion=${{ steps.get-version.outputs.version }}
 
     - name: List created packages
       run: ls -la ${{ github.workspace }}/nupkgs/
 
     - name: Publish Abstraction package to NuGet
-      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Verification.Abstraction.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Authentication.Core.Abstraction.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
-    - name: Publish Application package to NuGet
-      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Verification.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+    - name: Publish Domain package to NuGet
+      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Authentication.Core.Domain.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+    - name: Publish Base package to NuGet
+      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Authentication.Core.Base.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
     - name: Publish EfCore package to NuGet
-      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Verification.EfCore.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Authentication.Core.EfCore.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
     - name: Publish Endpoint package to NuGet
-      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Verification.Endpoint.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Authentication.Core.Endpoint.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+    - name: Publish Consumer package to NuGet
+      run: dotnet nuget push ${{ github.workspace }}/nupkgs/MasLazu.AspNet.Authentication.Core.Consumer.${{ steps.get-version.outputs.version }}.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
     - name: Create GitHub release notes
       if: github.event_name == 'workflow_dispatch'
@@ -91,10 +107,12 @@ jobs:
         script: |
           const version = '${{ steps.get-version.outputs.version }}';
           const packages = [
-            'MasLazu.AspNet.Verification.Abstraction',
-            'MasLazu.AspNet.Verification',
-            'MasLazu.AspNet.Verification.EfCore',
-            'MasLazu.AspNet.Verification.Endpoint'
+            'MasLazu.AspNet.Authentication.Core.Abstraction',
+            'MasLazu.AspNet.Authentication.Core.Domain',
+            'MasLazu.AspNet.Authentication.Core.Base',
+            'MasLazu.AspNet.Authentication.Core.EfCore',
+            'MasLazu.AspNet.Authentication.Core.Endpoint',
+            'MasLazu.AspNet.Authentication.Core.Consumer'
           ];
 
           let body = `## 🚀 Release ${version}\n\n`;
@@ -113,9 +131,17 @@ jobs:
           body += '### 🏗️ Architecture\n\n';
           body += 'This release includes:\n';
           body += '- **Abstraction Layer**: Core interfaces and contracts\n';
-          body += '- **Application Layer**: Business logic and services\n';
-          body += '- **Infrastructure Layer**: EF Core data access\n';
+          body += '- **Domain Layer**: Business entities and rules\n';
+          body += '- **Application Layer**: Service implementations\n';
+          body += '- **Infrastructure Layer**: EF Core data access and event consumers\n';
           body += '- **Presentation Layer**: REST API endpoints\n\n';
+          body += '### ✨ Key Features\n\n';
+          body += '- JWT-based authentication with refresh tokens\n';
+          body += '- Multi-login method support\n';
+          body += '- Email verification workflows\n';
+          body += '- CQRS-ready architecture\n';
+          body += '- Event-driven processing\n';
+          body += '- Comprehensive API documentation\n\n';
           body += '---\n\n';
           body += '*This release was automatically published by GitHub Actions.*';
 
@@ -128,3 +154,4 @@ jobs:
             draft: false,
             prerelease: version.includes('beta') || version.includes('alpha') || version.includes('rc') || version.includes('preview')
           });
+
