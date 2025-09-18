@@ -4,10 +4,29 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Properties -->
+    <PackageId>MasLazu.AspNet.Authentication.Core.Domain</PackageId>
+    <Version>1.0.0-preview.1</Version>
+    <Authors>MasLazu</Authors>
+    <Company>MasLazu</Company>
+    <Description>Domain layer for MasLazu ASP.NET Authentication Core. Contains domain entities and business rules for authentication and user management.</Description>
+    <PackageTags>aspnetcore;authentication;domain;entities;ddd</PackageTags>
+    <RepositoryUrl>https://github.com/maslazu/MasLazu.AspNet.Authentication.Core</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/maslazu/MasLazu.AspNet.Authentication.Core</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>See RELEASES.md for release notes.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MasLazu.AspNet.Framework.Domain" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
 </Project>
+

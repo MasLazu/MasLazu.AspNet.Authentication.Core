@@ -4,6 +4,20 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- NuGet Package Properties -->
+    <PackageId>MasLazu.AspNet.Authentication.Core.EfCore</PackageId>
+    <Version>1.0.0-preview.1</Version>
+    <Authors>MasLazu</Authors>
+    <Company>MasLazu</Company>
+    <Description>Entity Framework Core implementation for MasLazu ASP.NET Authentication Core. Contains DbContext configurations and entity mappings.</Description>
+    <PackageTags>aspnetcore;authentication;efcore;orm;database</PackageTags>
+    <RepositoryUrl>https://github.com/maslazu/MasLazu.AspNet.Authentication.Core</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/maslazu/MasLazu.AspNet.Authentication.Core</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>See RELEASES.md for release notes.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,4 +28,9 @@
     <ProjectReference Include="..\MasLazu.AspNet.Authentication.Core.Domain\MasLazu.AspNet.Authentication.Core.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
 </Project>
+
