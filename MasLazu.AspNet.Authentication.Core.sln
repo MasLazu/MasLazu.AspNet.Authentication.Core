@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1AC50F43-48CE-4561-A41B-6099DE4ACB05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Abstraction", "src\MasLazu.AspNet.Authentication.Core.Abstraction\MasLazu.AspNet.Authentication.Core.Abstraction.csproj", "{2DE566A8-9BC2-4437-A96A-423D1C5AD993}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Base", "src\MasLazu.AspNet.Authentication.Core.Base\MasLazu.AspNet.Authentication.Core.Base.csproj", "{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Domain", "src\MasLazu.AspNet.Authentication.Core.Domain\MasLazu.AspNet.Authentication.Core.Domain.csproj", "{AD5AE476-2180-4C34-8DA1-0C7BEAE7168D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.EfCore", "src\MasLazu.AspNet.Authentication.Core.EfCore\MasLazu.AspNet.Authentication.Core.EfCore.csproj", "{9940E5A4-232C-4A06-897A-7FFDFE1D7B9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Endpoint", "src\MasLazu.AspNet.Authentication.Core.Endpoint\MasLazu.AspNet.Authentication.Core.Endpoint.csproj", "{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Consumer", "src\MasLazu.AspNet.Authentication.Core.Consumer\MasLazu.AspNet.Authentication.Core.Consumer.csproj", "{468D5E1A-41C0-469D-8735-16DCE746613C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DE566A8-9BC2-4437-A96A-423D1C5AD993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE566A8-9BC2-4437-A96A-423D1C5AD993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE566A8-9BC2-4437-A96A-423D1C5AD993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE566A8-9BC2-4437-A96A-423D1C5AD993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5AE476-2180-4C34-8DA1-0C7BEAE7168D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5AE476-2180-4C34-8DA1-0C7BEAE7168D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5AE476-2180-4C34-8DA1-0C7BEAE7168D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5AE476-2180-4C34-8DA1-0C7BEAE7168D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9940E5A4-232C-4A06-897A-7FFDFE1D7B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9940E5A4-232C-4A06-897A-7FFDFE1D7B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9940E5A4-232C-4A06-897A-7FFDFE1D7B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9940E5A4-232C-4A06-897A-7FFDFE1D7B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{468D5E1A-41C0-469D-8735-16DCE746613C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{468D5E1A-41C0-469D-8735-16DCE746613C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{468D5E1A-41C0-469D-8735-16DCE746613C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{468D5E1A-41C0-469D-8735-16DCE746613C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2DE566A8-9BC2-4437-A96A-423D1C5AD993} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
+		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
+		{AD5AE476-2180-4C34-8DA1-0C7BEAE7168D} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
+		{9940E5A4-232C-4A06-897A-7FFDFE1D7B9D} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
+		{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
+		{468D5E1A-41C0-469D-8735-16DCE746613C} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
+	EndGlobalSection
+EndGlobal

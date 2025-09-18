@@ -1,0 +1,17 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="MasLazu.AspNet.Framework.Application" Version="1.0.0-preview.5" />
+    <PackageVersion Include="MasLazu.AspNet.Framework.Domain" Version="1.0.0-preview.5" />
+    <PackageVersion Include="MasLazu.AspNet.Framework.EfCore" Version="1.0.0-preview.5" />
+    <PackageVersion Include="MasLazu.AspNet.Framework.Endpoint" Version="1.0.0-preview.5" />
+    <PackageVersion Include="MassTransit" Version="8.5.2" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.9" />
+    <PackageVersion Include="MasLazu.AspNet.Verification.Abstraction" Version="1.0.0-preview.1" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.14.0" />
+  </ItemGroup>
+</Project>

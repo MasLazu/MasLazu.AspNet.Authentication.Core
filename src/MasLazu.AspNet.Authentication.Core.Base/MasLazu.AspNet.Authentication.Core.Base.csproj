@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MasLazu.AspNet.Framework.Application" />
+    <PackageReference Include="MasLazu.AspNet.Framework.Domain" />
+    <PackageReference Include="MasLazu.AspNet.Verification.Abstraction" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MasLazu.AspNet.Authentication.Core.Domain\MasLazu.AspNet.Authentication.Core.Domain.csproj" />
+    <ProjectReference Include="..\MasLazu.AspNet.Authentication.Core.Abstraction\MasLazu.AspNet.Authentication.Core.Abstraction.csproj" />
+  </ItemGroup>
+
+</Project>
