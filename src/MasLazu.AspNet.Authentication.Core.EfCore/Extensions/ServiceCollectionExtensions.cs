@@ -16,6 +16,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRepository<LoginMethod>, Repository<LoginMethod, AuthenticationCoreDbContext>>();
         services.AddScoped<IRepository<UserLoginMethod>, Repository<UserLoginMethod, AuthenticationCoreDbContext>>();
         services.AddScoped<IRepository<Language>, Repository<Language, AuthenticationCoreDbContext>>();
+        services.AddScoped<IRepository<Gender>, Repository<Gender, AuthenticationCoreDbContext>>();
+        services.AddScoped<IRepository<Timezone>, Repository<Timezone, AuthenticationCoreDbContext>>();
 
         services.AddScoped<IReadRepository<User>, ReadRepository<User, AuthenticationCoreReadDbContext>>();
         services.AddScoped<IReadRepository<RefreshToken>, ReadRepository<RefreshToken, AuthenticationCoreReadDbContext>>();
@@ -23,6 +25,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IReadRepository<LoginMethod>, ReadRepository<LoginMethod, AuthenticationCoreReadDbContext>>();
         services.AddScoped<IReadRepository<UserLoginMethod>, ReadRepository<UserLoginMethod, AuthenticationCoreReadDbContext>>();
         services.AddScoped<IReadRepository<Language>, ReadRepository<Language, AuthenticationCoreReadDbContext>>();
+        services.AddScoped<IReadRepository<Gender>, ReadRepository<Gender, AuthenticationCoreReadDbContext>>();
+        services.AddScoped<IReadRepository<Timezone>, ReadRepository<Timezone, AuthenticationCoreReadDbContext>>();
 
         return services;
     }
