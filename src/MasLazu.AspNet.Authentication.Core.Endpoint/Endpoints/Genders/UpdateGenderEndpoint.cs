@@ -18,7 +18,7 @@ public class UpdateGenderEndpoint : BaseEndpoint<UpdateGenderRequest, GenderDto>
 
     public override async Task HandleAsync(UpdateGenderRequest req, CancellationToken ct)
     {
-        GenderDto result = await GenderService.UpdateAsync(Guid.Empty, req, ct);
+        GenderDto result = await GenderService.UpdateAsync(Guid.Empty, req, true, ct);
         await SendOkResponseAsync(result, "Gender Updated Successfully", ct);
     }
 }

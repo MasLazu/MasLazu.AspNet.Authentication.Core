@@ -18,7 +18,7 @@ public class UpdateUserEndpoint : BaseEndpoint<UpdateUserRequest, UserDto>
 
     public override async Task HandleAsync(UpdateUserRequest req, CancellationToken ct)
     {
-        UserDto result = await UserService.UpdateAsync(Guid.Empty, req, ct);
+        UserDto result = await UserService.UpdateAsync(Guid.Empty, req, true, ct);
         await SendOkResponseAsync(result, "User Updated Successfully", ct);
     }
 }
