@@ -20,7 +20,7 @@ public class GetUsersPaginatedEndpoint : BaseEndpoint<PaginationRequest, Paginat
 
     public override async Task HandleAsync(PaginationRequest req, CancellationToken ct)
     {
-        PaginatedResult<UserDto> result = await UserService.GetPaginatedAsync(Guid.Empty, req, ct);
+        PaginatedResult<UserDto> result = await UserService.GetPaginatedAsync(req, ct);
         await SendOkResponseAsync(result, "Users Paginated Retrieved Successfully", ct);
     }
 }

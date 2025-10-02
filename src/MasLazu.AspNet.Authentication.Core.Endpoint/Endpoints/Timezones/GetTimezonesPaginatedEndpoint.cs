@@ -19,7 +19,7 @@ public class GetTimezonesPaginatedEndpoint : BaseEndpoint<PaginationRequest, Pag
 
     public override async Task HandleAsync(PaginationRequest req, CancellationToken ct)
     {
-        PaginatedResult<TimezoneDto> result = await TimezoneService.GetPaginatedAsync(Guid.Empty, req, ct);
+        PaginatedResult<TimezoneDto> result = await TimezoneService.GetPaginatedAsync(req, ct);
         await SendOkResponseAsync(result, "Timezones Paginated Retrieved Successfully", ct);
     }
 }

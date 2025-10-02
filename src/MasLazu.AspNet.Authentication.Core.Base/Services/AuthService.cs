@@ -5,8 +5,6 @@ using MasLazu.AspNet.Framework.Application.Exceptions;
 using MasLazu.AspNet.Framework.Application.Interfaces;
 using MasLazu.AspNet.Authentication.Core.Abstraction.Models;
 using Mapster;
-using MasLazu.AspNet.Verification.Abstraction.Models;
-using MasLazu.AspNet.Verification.Abstraction.Interfaces;
 
 namespace MasLazu.AspNet.Authentication.Core.Base.Services;
 
@@ -27,8 +25,7 @@ public class AuthService : IAuthService
         IRepository<UserRefreshToken> userRefreshTokenRepository,
         IReadRepository<LoginMethod> loginMethodRepository,
         JwtUtil jwtUtil,
-        IUnitOfWork unitOfWork,
-        IVerificationService verificationService
+        IUnitOfWork unitOfWork
     )
     {
         _userRepository = userRepository;

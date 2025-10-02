@@ -18,7 +18,7 @@ public class DeleteUserEndpoint : BaseEndpointWithoutResponse<IdRequest>
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        await UserService.DeleteAsync(Guid.Empty, req.Id, true, ct);
+        await UserService.DeleteAsync(req.Id, true, ct);
         await SendOkResponseAsync("User Deleted Successfully", ct);
     }
 }

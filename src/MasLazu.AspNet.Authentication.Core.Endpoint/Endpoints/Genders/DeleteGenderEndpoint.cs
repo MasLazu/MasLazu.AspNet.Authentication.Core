@@ -18,7 +18,7 @@ public class DeleteGenderEndpoint : BaseEndpointWithoutResponse<IdRequest>
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        await GenderService.DeleteAsync(Guid.Empty, req.Id, true, ct);
+        await GenderService.DeleteAsync(req.Id, true, ct);
         await SendOkResponseAsync("Gender Deleted Successfully", ct);
     }
 }

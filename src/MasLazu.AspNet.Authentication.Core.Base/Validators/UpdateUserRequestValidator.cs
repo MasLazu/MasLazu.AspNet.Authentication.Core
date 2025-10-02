@@ -12,17 +12,16 @@ public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
 
         RuleFor(x => x.Name)
             .NotEmpty()
-            .MaximumLength(100)
-            .When(x => !string.IsNullOrEmpty(x.Name));
+            .MaximumLength(100);
 
         RuleFor(x => x.Email)
             .EmailAddress()
             .When(x => !string.IsNullOrEmpty(x.Email));
 
         RuleFor(x => x.PhoneNumber)
-            .Matches(@"^\+?[1-9]\d{1,14}$")
+            .Matches(@"^\+?[1-9]\d{9,14}$")
             .When(x => !string.IsNullOrEmpty(x.PhoneNumber))
-            .WithMessage("Invalid phone number format.");
+            .WithMessage("Invalid phone number format. Phone number must be 10-15 digits.");
 
         RuleFor(x => x.Username)
             .MaximumLength(50)

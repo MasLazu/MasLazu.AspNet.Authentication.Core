@@ -19,7 +19,7 @@ public class GetLanguagesPaginatedEndpoint : BaseEndpoint<PaginationRequest, Pag
 
     public override async Task HandleAsync(PaginationRequest req, CancellationToken ct)
     {
-        PaginatedResult<LanguageDto> result = await LanguageService.GetPaginatedAsync(Guid.Empty, req, ct);
+        PaginatedResult<LanguageDto> result = await LanguageService.GetPaginatedAsync(req, ct);
         await SendOkResponseAsync(result, "Languages Paginated Retrieved Successfully", ct);
     }
 }

@@ -18,7 +18,7 @@ public class CreateGenderEndpoint : BaseEndpoint<CreateGenderRequest, GenderDto>
 
     public override async Task HandleAsync(CreateGenderRequest req, CancellationToken ct)
     {
-        GenderDto result = await GenderService.CreateAsync(Guid.Empty, req, true, ct);
+        GenderDto result = await GenderService.CreateAsync(req, true, ct);
         await SendOkResponseAsync(result, "Gender Created Successfully", ct);
     }
 }

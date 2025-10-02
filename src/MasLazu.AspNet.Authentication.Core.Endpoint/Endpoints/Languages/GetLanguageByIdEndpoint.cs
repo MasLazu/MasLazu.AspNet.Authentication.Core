@@ -20,7 +20,7 @@ public class GetLanguageByIdEndpoint : BaseEndpoint<IdRequest, LanguageDto>
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        LanguageDto result = await LanguageService.GetByIdAsync(Guid.Empty, req.Id, ct) ??
+        LanguageDto result = await LanguageService.GetByIdAsync(req.Id, ct) ??
             throw new NotFoundException(nameof(LanguageDto), req.Id);
         await SendOkResponseAsync(result, "Language Retrieved Successfully", ct);
     }

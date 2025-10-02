@@ -20,7 +20,7 @@ public class GetTimezoneByIdEndpoint : BaseEndpoint<IdRequest, TimezoneDto>
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        TimezoneDto result = await TimezoneService.GetByIdAsync(Guid.Empty, req.Id, ct) ??
+        TimezoneDto result = await TimezoneService.GetByIdAsync(req.Id, ct) ??
             throw new NotFoundException(nameof(TimezoneDto), req.Id);
         await SendOkResponseAsync(result, "Timezone Retrieved Successfully", ct);
     }

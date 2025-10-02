@@ -1,6 +1,7 @@
 using MasLazu.AspNet.Authentication.Core.Domain.Entities;
 using MasLazu.AspNet.Authentication.Core.EfCore.Data;
 using MasLazu.AspNet.Framework.Application.Interfaces;
+using MasLazu.AspNet.Framework.EfCore.Data;
 using MasLazu.AspNet.Framework.EfCore.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,6 +28,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IReadRepository<Language>, ReadRepository<Language, AuthenticationCoreReadDbContext>>();
         services.AddScoped<IReadRepository<Gender>, ReadRepository<Gender, AuthenticationCoreReadDbContext>>();
         services.AddScoped<IReadRepository<Timezone>, ReadRepository<Timezone, AuthenticationCoreReadDbContext>>();
+
+        services.AddScoped<BaseDbContext>(sp => sp.GetRequiredService<AuthenticationCoreDbContext>());
 
         return services;
     }

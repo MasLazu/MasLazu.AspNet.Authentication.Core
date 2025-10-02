@@ -56,7 +56,7 @@ public class JwtUtil
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = expiresAt.DateTime,
+            Expires = expiresAt.UtcDateTime,
             Issuer = _jwtConfig.Issuer,
             Audience = _jwtConfig.Audience,
             SigningCredentials = _signingCredentials
@@ -100,7 +100,7 @@ public class JwtUtil
                 ValidateAudience = true,
                 ValidAudience = _jwtConfig.Audience,
                 ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero
+                ClockSkew = TimeSpan.FromMinutes(5)
             };
 
             ClaimsPrincipal principal = tokenHandler.ValidateToken(token, validationParameters, out _);

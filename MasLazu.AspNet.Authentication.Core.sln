@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1AC50F43-48CE-4561-A41B-6099DE4ACB05}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7F8E9D3C-4B6A-4E1F-9A7D-8C5F3E2D1B9A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Abstraction", "src\MasLazu.AspNet.Authentication.Core.Abstraction\MasLazu.AspNet.Authentication.Core.Abstraction.csproj", "{2DE566A8-9BC2-4437-A96A-423D1C5AD993}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Base", "src\MasLazu.AspNet.Authentication.Core.Base\MasLazu.AspNet.Authentication.Core.Base.csproj", "{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}"
@@ -16,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Endpoint", "src\MasLazu.AspNet.Authentication.Core.Endpoint\MasLazu.AspNet.Authentication.Core.Endpoint.csproj", "{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Consumer", "src\MasLazu.AspNet.Authentication.Core.Consumer\MasLazu.AspNet.Authentication.Core.Consumer.csproj", "{468D5E1A-41C0-469D-8735-16DCE746613C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Base.Tests", "tests\MasLazu.AspNet.Authentication.Core.Base.Tests\MasLazu.AspNet.Authentication.Core.Base.Tests.csproj", "{8A9B7C6D-5E4F-3A2B-1C9D-7E6F5A4B8C3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasLazu.AspNet.Authentication.Core.Integration.Tests", "tests\MasLazu.AspNet.Authentication.Core.Integration.Tests\MasLazu.AspNet.Authentication.Core.Integration.Tests.csproj", "{9B8C7D6E-4F5A-2B3C-0D8E-6F7A5B9C4E2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +36,14 @@ Global
 		{2DE566A8-9BC2-4437-A96A-423D1C5AD993}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DE566A8-9BC2-4437-A96A-423D1C5AD993}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DE566A8-9BC2-4437-A96A-423D1C5AD993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9B7C6D-5E4F-3A2B-1C9D-7E6F5A4B8C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9B7C6D-5E4F-3A2B-1C9D-7E6F5A4B8C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9B7C6D-5E4F-3A2B-1C9D-7E6F5A4B8C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9B7C6D-5E4F-3A2B-1C9D-7E6F5A4B8C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B8C7D6E-4F5A-2B3C-0D8E-6F7A5B9C4E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B8C7D6E-4F5A-2B3C-0D8E-6F7A5B9C4E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B8C7D6E-4F5A-2B3C-0D8E-6F7A5B9C4E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B8C7D6E-4F5A-2B3C-0D8E-6F7A5B9C4E2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC98D2E-AA84-4DAE-BFB8-F33D1A79D532}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,5 +72,7 @@ Global
 		{9940E5A4-232C-4A06-897A-7FFDFE1D7B9D} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
 		{6AA085BE-B239-4F1F-AE7F-FD5F4D414F8C} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
 		{468D5E1A-41C0-469D-8735-16DCE746613C} = {1AC50F43-48CE-4561-A41B-6099DE4ACB05}
+		{8A9B7C6D-5E4F-3A2B-1C9D-7E6F5A4B8C3D} = {7F8E9D3C-4B6A-4E1F-9A7D-8C5F3E2D1B9A}
+		{9B8C7D6E-4F5A-2B3C-0D8E-6F7A5B9C4E2D} = {7F8E9D3C-4B6A-4E1F-9A7D-8C5F3E2D1B9A}
 	EndGlobalSection
 EndGlobal

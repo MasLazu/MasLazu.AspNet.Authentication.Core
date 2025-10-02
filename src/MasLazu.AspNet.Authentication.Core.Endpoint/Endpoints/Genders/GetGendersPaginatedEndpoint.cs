@@ -19,7 +19,7 @@ public class GetGendersPaginatedEndpoint : BaseEndpoint<PaginationRequest, Pagin
 
     public override async Task HandleAsync(PaginationRequest req, CancellationToken ct)
     {
-        PaginatedResult<GenderDto> result = await GenderService.GetPaginatedAsync(Guid.Empty, req, ct);
+        PaginatedResult<GenderDto> result = await GenderService.GetPaginatedAsync(req, ct);
         await SendOkResponseAsync(result, "Genders Paginated Retrieved Successfully", ct);
     }
 }

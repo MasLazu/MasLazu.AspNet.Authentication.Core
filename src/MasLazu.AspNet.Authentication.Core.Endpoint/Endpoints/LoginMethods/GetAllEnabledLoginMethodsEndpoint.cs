@@ -19,7 +19,7 @@ public class GetAllEnabledLoginMethodsEndpoint : BaseEndpointWithoutRequest<IEnu
 
     public override async Task HandleAsync(CancellationToken ct)
     {
-        IEnumerable<LoginMethodDto> result = await LoginMethodService.GetAllEnabledAsync(Guid.Empty, ct);
+        IEnumerable<LoginMethodDto> result = await LoginMethodService.GetAllEnabledAsync(ct);
         await SendOkResponseAsync(result, "Enabled Login Methods Retrieved Successfully");
     }
 }

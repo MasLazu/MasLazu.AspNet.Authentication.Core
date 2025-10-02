@@ -5,5 +5,5 @@ namespace MasLazu.AspNet.Authentication.Core.Abstraction.Interfaces;
 
 public interface IUserLoginMethodService : ICrudService<UserLoginMethodDto, CreateUserLoginMethodRequest, UpdateUserLoginMethodRequest>
 {
-    Task<IEnumerable<UserLoginMethodDto>> GetByUserIdAsync(Guid userId, Guid targetUserId, CancellationToken ct = default);
+    Task<IEnumerable<UserLoginMethodDto>> GetByUserIdAsync(Guid userId, CancellationToken ct = default);
 }

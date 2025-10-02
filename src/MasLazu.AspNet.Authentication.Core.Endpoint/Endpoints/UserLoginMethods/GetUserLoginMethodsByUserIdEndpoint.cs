@@ -19,7 +19,7 @@ public class GetUserLoginMethodsByUserIdEndpoint : BaseEndpoint<IdRequest, IEnum
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        IEnumerable<UserLoginMethodDto> result = await UserLoginMethodService.GetByUserIdAsync(Guid.Empty, req.Id, ct);
+        IEnumerable<UserLoginMethodDto> result = await UserLoginMethodService.GetByUserIdAsync(req.Id, ct);
         await SendOkResponseAsync(result, "User Login Methods Retrieved Successfully", ct);
     }
 }

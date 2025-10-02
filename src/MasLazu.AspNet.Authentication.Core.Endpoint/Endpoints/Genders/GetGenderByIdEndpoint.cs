@@ -20,7 +20,7 @@ public class GetGenderByIdEndpoint : BaseEndpoint<IdRequest, GenderDto>
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        GenderDto? result = await GenderService.GetByIdAsync(Guid.Empty, req.Id, ct) ??
+        GenderDto? result = await GenderService.GetByIdAsync(req.Id, ct) ??
             throw new NotFoundException(nameof(GenderDto), req.Id);
         await SendOkResponseAsync(result, "Gender Retrieved Successfully", ct);
     }

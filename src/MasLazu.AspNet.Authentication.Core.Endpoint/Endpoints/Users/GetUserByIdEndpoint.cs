@@ -20,7 +20,7 @@ public class GetUserByIdEndpoint : BaseEndpoint<IdRequest, UserDto>
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        UserDto result = await UserService.GetByIdAsync(Guid.Empty, req.Id, ct) ??
+        UserDto result = await UserService.GetByIdAsync(req.Id, ct) ??
             throw new NotFoundException(nameof(UserDto), req.Id);
         await SendOkResponseAsync(result, "User Retrieved Successfully", ct);
     }

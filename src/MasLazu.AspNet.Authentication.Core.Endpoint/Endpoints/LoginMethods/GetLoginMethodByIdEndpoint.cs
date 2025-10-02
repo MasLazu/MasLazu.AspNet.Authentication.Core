@@ -20,7 +20,7 @@ public class GetLoginMethodByIdEndpoint : BaseEndpoint<IdRequest, LoginMethodDto
 
     public override async Task HandleAsync(IdRequest req, CancellationToken ct)
     {
-        LoginMethodDto? result = await LoginMethodService.GetByIdAsync(Guid.Empty, req.Id, ct) ??
+        LoginMethodDto? result = await LoginMethodService.GetByIdAsync(req.Id, ct) ??
             throw new NotFoundException(nameof(LoginMethodDto), req.Id);
         await SendOkResponseAsync(result, "Login Method Retrieved Successfully", ct);
     }

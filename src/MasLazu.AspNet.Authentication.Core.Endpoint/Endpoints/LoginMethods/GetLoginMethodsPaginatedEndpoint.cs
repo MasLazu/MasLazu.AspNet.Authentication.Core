@@ -19,7 +19,7 @@ public class GetLoginMethodsPaginatedEndpoint : BaseEndpoint<PaginationRequest, 
 
     public override async Task HandleAsync(PaginationRequest req, CancellationToken ct)
     {
-        PaginatedResult<LoginMethodDto> result = await LoginMethodService.GetPaginatedAsync(Guid.Empty, req, ct);
+        PaginatedResult<LoginMethodDto> result = await LoginMethodService.GetPaginatedAsync(req, ct);
         await SendOkResponseAsync(result, "Login Methods Paginated Retrieved Successfully", ct);
     }
 }

@@ -23,9 +23,9 @@ public class UserLoginMethodService : CrudService<UserLoginMethod, UserLoginMeth
     {
     }
 
-    public async Task<IEnumerable<UserLoginMethodDto>> GetByUserIdAsync(Guid userId, Guid targetUserId, CancellationToken ct = default)
+    public async Task<IEnumerable<UserLoginMethodDto>> GetByUserIdAsync(Guid userId, CancellationToken ct = default)
     {
-        IEnumerable<UserLoginMethod> entities = await Repository.FindAsync(e => e.UserId == targetUserId, ct);
+        IEnumerable<UserLoginMethod> entities = await Repository.FindAsync(e => e.UserId == userId, ct);
         return entities.Adapt<IEnumerable<UserLoginMethodDto>>();
     }
 }

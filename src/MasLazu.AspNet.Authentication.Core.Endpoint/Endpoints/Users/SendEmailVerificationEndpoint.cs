@@ -21,6 +21,6 @@ public class SendEmailVerificationEndpoint : BaseEndpointWithoutResponse<SendEma
     public override async Task HandleAsync(SendEmailVerificationRequest req, CancellationToken ct)
     {
         await UserService.SendEmailVerificationAsync(req.Email, ct);
-        await SendOkResponseAsync("Email verification sent successfully");
+        await SendOkResponseAsync("Email verification sent successfully", ct);
     }
 }

@@ -18,7 +18,7 @@ public class CreateUserEndpoint : BaseEndpoint<CreateUserRequest, UserDto>
 
     public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct)
     {
-        UserDto result = await UserService.CreateAsync(Guid.Empty, req, true, ct);
+        UserDto result = await UserService.CreateAsync(req, true, ct);
         await SendOkResponseAsync(result, "User Created Successfully", ct);
     }
 }

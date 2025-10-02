@@ -41,7 +41,7 @@ public class LoginMethodService : CrudService<LoginMethod, LoginMethodDto, Creat
         return createdEntity.Adapt<LoginMethodDto>();
     }
 
-    public async Task<IEnumerable<LoginMethodDto>> GetAllEnabledAsync(Guid userId, CancellationToken ct = default)
+    public async Task<IEnumerable<LoginMethodDto>> GetAllEnabledAsync(CancellationToken ct = default)
     {
         IEnumerable<LoginMethod> entities = await ReadRepository.FindAsync(lm => lm.IsEnabled, ct);
         return entities.Adapt<IEnumerable<LoginMethodDto>>();
