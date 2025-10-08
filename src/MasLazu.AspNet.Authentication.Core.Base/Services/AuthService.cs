@@ -86,4 +86,57 @@ public class AuthService : IAuthService
             RefreshTokenExpiresAt: refreshTokenExpiresAt
         );
     }
+
+    public async Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request, CancellationToken ct = default)
+    {
+        if (!_jwtUtil.ValidateRefreshToken(request.RefreshToken))
+        {
+            throw new UnauthorizedException("Invalid refresh token.");
+        }
+
+        string? userIdString = _jwtUtil.GetUserIdFromRefreshToken(request.RefreshToken);
+        if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out Guid userId))
+        {
+            throw new UnauthorizedException("Invalid refresh token.");
+        }
+
+        User? user = await _userRepository.GetByIdAsync(userId, ct);
+        if (user == null)
+        {
+            throw new UnauthorizedException("User not found.");
+        }
+
+        RefreshToken? refreshToken = await _refreshTokenRepository.FirstOrDefaultAsync(rt => rt.Token == request.RefreshToken, ct);
+        if (refreshToken == null || refreshToken.RevokedDate.HasValue || refreshToken.ExpiresDate <= DateTimeOffset.UtcNow)
+        {
+            throw new UnauthorizedException("Refresh token is invalid or expired.");
+        }
+
+        refreshToken.RevokedDate = DateTimeOffset.UtcNow;
+
+        (string accessTokenString, DateTimeOffset accessTokenExpiresAt) = _jwtUtil.GenerateAccessToken(user.Id, user.Email);
+        (string newRefreshTokenString, DateTimeOffset refreshTokenExpiresAt) = _jwtUtil.GenerateRefreshToken(user.Id);
+
+        var newRefreshToken = new RefreshToken
+        {
+            Token = newRefreshTokenString,
+            ExpiresDate = refreshTokenExpiresAt
+        };
+
+        await _refreshTokenRepository.AddAsync(newRefreshToken, ct);
+        await _userRefreshTokenRepository.AddAsync(new UserRefreshToken
+        {
+            UserId = user.Id,
+            RefreshTokenId = newRefreshToken.Id
+        }, ct);
+
+        await _unitOfWork.SaveChangesAsync(ct);
+
+        return new LoginResponse(
+            AccessToken: accessTokenString,
+            RefreshToken: newRefreshTokenString,
+            AccessTokenExpiresAt: accessTokenExpiresAt,
+            RefreshTokenExpiresAt: refreshTokenExpiresAt
+        );
+    }
 }

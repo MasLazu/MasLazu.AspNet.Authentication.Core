@@ -6,4 +6,5 @@ public interface IAuthService
 {
     Task<LoginResponse> LoginAsync(Guid userLoginMethodId, CancellationToken ct = default);
     Task<UserLoginMethodDto> GetUserLoginMethodByUserIdAsync(Guid userId, CancellationToken ct = default);
+    Task<LoginResponse> RefreshTokenAsync(RefreshTokenRequest request, CancellationToken ct = default);
 }

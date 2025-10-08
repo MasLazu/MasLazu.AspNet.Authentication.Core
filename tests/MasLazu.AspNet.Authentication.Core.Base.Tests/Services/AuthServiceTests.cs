@@ -261,4 +261,115 @@ public class AuthServiceTests
         await act.Should().ThrowAsync<NotFoundException>()
             .WithMessage("*UserLoginMethod*");
     }
+
+    [Fact]
+    public async Task RefreshTokenAsync_WithValidRefreshToken_ShouldReturnNewLoginResponse()
+    {
+        // Arrange
+        var userId = Guid.NewGuid();
+        var user = new User
+        {
+            Id = userId,
+            Name = "Test User",
+            Email = "test@example.com"
+        };
+
+        (string refreshTokenString, DateTimeOffset refreshTokenExpiresAt) = _jwtUtil.GenerateRefreshToken(userId);
+
+        var refreshToken = new RefreshToken
+        {
+            Id = Guid.NewGuid(),
+            Token = refreshTokenString,
+            ExpiresDate = refreshTokenExpiresAt
+        };
+
+        var refreshTokenRequest = new RefreshTokenRequest(refreshTokenString);
+
+        _userRepositoryMock
+            .Setup(x => x.GetByIdAsync(userId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        _refreshTokenRepositoryMock
+            .Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<RefreshToken, bool>>>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(refreshToken);
+
+        _refreshTokenRepositoryMock
+            .Setup(x => x.AddAsync(It.IsAny<RefreshToken>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync((RefreshToken token, CancellationToken _) => token);
+
+        _userRefreshTokenRepositoryMock
+            .Setup(x => x.AddAsync(It.IsAny<UserRefreshToken>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync((UserRefreshToken userToken, CancellationToken _) => userToken);
+
+        _unitOfWorkMock
+            .Setup(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(1);
+
+        // Act
+        LoginResponse result = await _authService.RefreshTokenAsync(refreshTokenRequest);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.AccessToken.Should().NotBeNullOrEmpty();
+        result.RefreshToken.Should().NotBeNullOrEmpty();
+        result.AccessTokenExpiresAt.Should().BeAfter(DateTimeOffset.UtcNow);
+        result.RefreshTokenExpiresAt.Should().BeAfter(DateTimeOffset.UtcNow);
+
+        _refreshTokenRepositoryMock.Verify(x => x.AddAsync(It.IsAny<RefreshToken>(), It.IsAny<CancellationToken>()), Times.Once);
+        _userRefreshTokenRepositoryMock.Verify(x => x.AddAsync(It.IsAny<UserRefreshToken>(), It.IsAny<CancellationToken>()), Times.Once);
+        _unitOfWorkMock.Verify(x => x.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task RefreshTokenAsync_WithInvalidRefreshToken_ShouldThrowUnauthorizedException()
+    {
+        // Arrange
+        var refreshTokenRequest = new RefreshTokenRequest("invalid_token");
+
+        // Act
+        Func<Task> act = async () => await _authService.RefreshTokenAsync(refreshTokenRequest);
+
+        // Assert
+        await act.Should().ThrowAsync<UnauthorizedException>()
+            .WithMessage("*Invalid refresh token*");
+    }
+
+    [Fact]
+    public async Task RefreshTokenAsync_WithExpiredRefreshToken_ShouldThrowUnauthorizedException()
+    {
+        // Arrange
+        var userId = Guid.NewGuid();
+        var user = new User
+        {
+            Id = userId,
+            Name = "Test User",
+            Email = "test@example.com"
+        };
+
+        (string refreshTokenString, DateTimeOffset _) = _jwtUtil.GenerateRefreshToken(userId);
+
+        var refreshToken = new RefreshToken
+        {
+            Id = Guid.NewGuid(),
+            Token = refreshTokenString,
+            ExpiresDate = DateTimeOffset.UtcNow.AddDays(-1) // Expired
+        };
+
+        var refreshTokenRequest = new RefreshTokenRequest(refreshTokenString);
+
+        _userRepositoryMock
+            .Setup(x => x.GetByIdAsync(userId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        _refreshTokenRepositoryMock
+            .Setup(x => x.FirstOrDefaultAsync(It.IsAny<Expression<Func<RefreshToken, bool>>>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(refreshToken);
+
+        // Act
+        Func<Task> act = async () => await _authService.RefreshTokenAsync(refreshTokenRequest);
+
+        // Assert
+        await act.Should().ThrowAsync<UnauthorizedException>()
+            .WithMessage("*invalid or expired*");
+    }
 }
